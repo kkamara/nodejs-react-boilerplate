@@ -1,10 +1,10 @@
-![nodejs-reactjs-boilerplate.png](https://github.com/kkamara/useful/blob/main/nodejs-reactjs-boilerplate.png?raw=true)
+![nodejs-react-boilerplate.png](https://github.com/kkamara/useful/blob/main/nodejs-react-boilerplate.png?raw=true)
 
-![nodejs-reactjs-boilerplate2.png](https://github.com/kkamara/useful/blob/main/nodejs-reactjs-boilerplate2.png?raw=true)
+![nodejs-react-boilerplate2.png](https://github.com/kkamara/useful/blob/main/nodejs-react-boilerplate2.png?raw=true)
 
-# nodejs-reactjs-boilerplate [![Tests Pipeline](https://github.com/kkamara/nodejs-reactjs-boilerplate/actions/workflows/node.js.yml/badge.svg)](https://github.com/kkamara/nodejs-reactjs-boilerplate/actions/workflows/node.js.yml)
+# nodejs-react-boilerplate [![Tests Pipeline](https://github.com/kkamara/nodejs-react-boilerplate/actions/workflows/node.js.yml/badge.svg)](https://github.com/kkamara/nodejs-react-boilerplate/actions/workflows/node.js.yml)
 
-(22-Jun-2021) An MVC NodeJS boilerplate with ReactJS 19 Redux SPA.
+(22-Jun-2021) An MVC NodeJS boilerplate with React 19 Redux SPA.
 
 * [Using Postman?](#postman)
 
@@ -31,9 +31,9 @@
 
 [Get Postman HTTP client](https://www.postman.com).
 
-[Postman API Collection for NodeJS ReactJS Boilerplate](https://github.com/kkamara/nodejs-reactjs-boilerplate/blob/main/nodejs-reactjs-boilerplate.postman_collection.json).
+[Postman API Collection for NodeJS ReactJS Boilerplate](./nodejs-react-boilerplate.postman_collection.json).
 
-[Postman API Environment for NodeJS ReactJS Boilerplate](https://github.com/kkamara/nodejs-reactjs-boilerplate/blob/main/nodejs-reactjs-boilerplate.postman_environment.json).
+[Postman API Environment for NodeJS ReactJS Boilerplate](./nodejs-react-boilerplate.postman_environment.json).
 
 ## Important Note
 
@@ -73,7 +73,7 @@ yarn build
 
 #### Sequelize tutorial
 
-See [package.json](https://github.com/kkamara/nodejs-reactjs-boilerplate/blob/main/package.json) for helpful commands related to using the database.
+See [package.json](./package.json) for helpful commands related to using the database.
 
 ```bash
 # Docs:
@@ -136,7 +136,7 @@ docker-compose up --build -d
 
 ![docker-mailhog.png](https://raw.githubusercontent.com/kkamara/useful/main/docker-mailhog.png)
 
-Mail environment credentials are at [.env.docker](https://raw.githubusercontent.com/kkamara/nodejs-reactjs-boilerplate/main/.env.docker).
+Mail environment credentials are at [.env.docker](https://raw.githubusercontent.com/kkamara/nodejs-react-boilerplate/main/.env.docker).
 
 The [Mailhog](https://github.com/mailhog/MailHog) Docker image runs at `http://localhost:8025`in this app.
 
@@ -148,7 +148,7 @@ NODE_ENV=test yarn test
 
 ## Misc.
 
-* [See NodeJS ReactJS Boilerplate](https://github.com/kkamara/nodejs-reactjs-boilerplate)
+* [See NodeJS ReactJS Boilerplate](https://github.com/kkamara/nodejs-react-boilerplate)
 
 * [See ReactJS Native Mobile App Boilerplate](https://github.com/kkamara/ReactJSNativeMobileAppBoilerplate)
 
