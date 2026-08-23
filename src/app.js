@@ -49,7 +49,7 @@ app.use(setUserTimezone);
 
 app.use('/', routes);
 
-// Serve ReactJS app routes
+// Serve React app routes
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });

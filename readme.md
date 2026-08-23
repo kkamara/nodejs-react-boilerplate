@@ -31,9 +31,9 @@
 
 [Get Postman HTTP client](https://www.postman.com).
 
-[Postman API Collection for NodeJS ReactJS Boilerplate](./nodejs-react-boilerplate.postman_collection.json).
+[Postman API Collection for NodeJS React Boilerplate](./nodejs-react-boilerplate.postman_collection.json).
 
-[Postman API Environment for NodeJS ReactJS Boilerplate](./nodejs-react-boilerplate.postman_environment.json).
+[Postman API Environment for NodeJS React Boilerplate](./nodejs-react-boilerplate.postman_environment.json).
 
 ## Important Note
 
@@ -148,9 +148,9 @@ NODE_ENV=test yarn test
 
 ## Misc.
 
-* [See NodeJS ReactJS Boilerplate](https://github.com/kkamara/nodejs-react-boilerplate)
+* [See NodeJS React Boilerplate](https://github.com/kkamara/nodejs-react-boilerplate)
 
-* [See ReactJS Native Mobile App Boilerplate](https://github.com/kkamara/ReactJSNativeMobileAppBoilerplate)
+* [See React Native Mobile App Boilerplate](https://github.com/kkamara/ReactNativeMobileAppBoilerplate)
 
 * [See MRVL Desktop](https://github.com/kkamara/mrvl-desktop)
 
