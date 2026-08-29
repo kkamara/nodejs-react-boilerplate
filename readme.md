@@ -1,6 +1,6 @@
-![nodejs-react-boilerplate.png](https://github.com/kkamara/useful/blob/main/nodejs-react-boilerplate.png?raw=true)
+![nodejs-react-boilerplate.png](https://raw.githubusercontent.com/kkamara/useful/refs/heads/main/nodejs-react-boilerplate.png)
 
-![nodejs-react-boilerplate2.png](https://github.com/kkamara/useful/blob/main/nodejs-react-boilerplate2.png?raw=true)
+![nodejs-react-boilerplate2.png](https://raw.githubusercontent.com/kkamara/useful/refs/heads/main/nodejs-react-boilerplate2.png)
 
 # nodejs-react-boilerplate [![Tests Pipeline](https://github.com/kkamara/nodejs-react-boilerplate/actions/workflows/node.js.yml/badge.svg)](https://github.com/kkamara/nodejs-react-boilerplate/actions/workflows/node.js.yml)
 
