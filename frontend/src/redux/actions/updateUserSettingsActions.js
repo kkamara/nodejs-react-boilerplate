@@ -8,7 +8,7 @@ export const updateSettings = payload => {
     dispatch({ type: updateUserSettings.UPDATE_USER_SETTINGS_PENDING, })
 
     const tokenID = "user-token"
-    await http.patchData(
+    await http.putData(
       "/user",
       payload,
       tokenID,
