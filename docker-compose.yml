@@ -31,7 +31,7 @@ services:
       - MYSQL_PASSWORD=${DB_PASS}
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - 'db:/docker-entrypoint-initdb.d'
+      - 'mysql:/docker-entrypoint-initdb.d'
     networks:
       - app
     healthcheck:
@@ -68,7 +68,7 @@ services:
 volumes:
   redis:
     driver: local
-  db:
+  mysql:
     driver: local
 
 networks:

@@ -25,12 +25,7 @@ if ('production' !== config.nodeEnv) {
   logging = log;
 }
 
-sequelize = new Sequelize(
-  seqConfig.database,
-  seqConfig.username,
-  seqConfig.password,
-  {
-     host: seqConfig.host,
+const sequelizeOptions = {
      port: seqConfig.port || 3306,
      dialect: seqConfig.dialect, /* 'mysql' | 'postgres' | 'sqlite' | 'mariadb' */
      storage: seqConfig.storage || false, // when sqlite dialect
@@ -45,8 +40,21 @@ sequelize = new Sequelize(
         acquire: 30000,
         idle: 10000,
      },
-  },
-);
+};
+
+if (config.databaseURL) {
+  sequelize = new Sequelize(config.databaseURL, sequelizeOptions);
+} else {
+  sequelize = new Sequelize(
+    seqConfig.database,
+    seqConfig.username,
+    seqConfig.password,
+    {
+      ...sequelizeOptions,
+      host: process.env.DB_HOST || seqConfig.host,
+    },
+  );
+}
 
 fs
   .readdirSync(__dirname)

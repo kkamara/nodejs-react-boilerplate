@@ -35,6 +35,7 @@ const config = {
   mailPass: process.env.MAIL_PASS,
   mailFrom: process.env.MAIL_FROM,
   mailTo: process.env.MAIL_TO,
+  databaseURL: process.env.DATABASE_URL,
 };
 
 module.exports = config;
