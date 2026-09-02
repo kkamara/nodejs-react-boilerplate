@@ -31,8 +31,8 @@ app.set('views', path.join(
 ));
 
 app.use(express.static("public"));
-app.use('/static', express.static("frontend/build/static"));
-app.get('/*', express.static('frontend/build'));
+app.use('/assets', express.static("frontend/dist/assets"));
+app.get('/*', express.static('frontend/dist'));
 
 if ('production' === config.nodeEnv) {
   app.use(minifyHTML);
@@ -51,7 +51,7 @@ app.use('/', routes);
 
 // Serve React app routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
 
 app.use(notFound);
