@@ -6,7 +6,7 @@ const multer = require("multer");
 const { defaultConfig, } = require("../../../../utils/uploads");
 
 const upload = multer(defaultConfig)
-  .single("binary");
+  .single("avatar");
 
 const router = express.Router();
 
