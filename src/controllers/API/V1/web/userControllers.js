@@ -94,7 +94,7 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error(message400);
   }
 
-  const emailExists = db.sequelize.models.user
+  const emailExists = await db.sequelize.models.user
     .emailExists(cleanData.email);
   if (false === emailExists) {
     res.status(status.BAD_REQUEST);
