@@ -1,14 +1,12 @@
 "use strict";
 const db = require("../../../../models/V1");
 const { status, } = require("http-status");
-const multer = require("multer");
 const {
   message400,
   message500,
   message200,
   message404,
 } = require("../../../../utils/httpResponses");
-const { defaultConfig, } = require("../../../../utils/uploads");
 const { getUploadPhotoError, moveFile, removeFile, profilePhotoAsset, defaultAvatarName, } = require("../../../../utils/file");
 const { nodeEnv, } = require("../../../../config");
 const { encrypt } = require("../../../../utils/tokens");
