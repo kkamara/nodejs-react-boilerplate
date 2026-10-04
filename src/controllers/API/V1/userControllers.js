@@ -36,7 +36,7 @@ const createUser = asyncHandler(async (req, res) => {
       cleanData.email,
     );
   if (true === emailExists) {
-    res.status(status.INTERNAL_SERVER_ERROR);
+    res.status(status.BAD_REQUEST);
     throw new Error(
       "The email field has already been taken."
     );
