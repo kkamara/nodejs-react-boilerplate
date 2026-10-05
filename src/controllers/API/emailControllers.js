@@ -1,7 +1,6 @@
 'use strict';
 const { status, } = require("http-status");
 const { testSendEmail, } = require("../../services/email");
-const { message500, } = require('../../utils/httpResponses');
 const config = require("../../config/index");
 const asyncHandler = require("express-async-handler");
 
@@ -26,7 +25,7 @@ const sendEmail = asyncHandler(async (req, res) => {
     `,
   });
   if (false === sendEmail) {
-    res.status(message500);
+    res.status(status.INTERNAL_SERVER_ERROR);
     throw new Error(
       "Error encountered when attempting to send email.",
     );
