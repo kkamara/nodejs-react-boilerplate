@@ -64,7 +64,8 @@ module.exports = (sequelize, DataTypes) => {
       try {
         const result = await sequelize.query(
           `SELECT id, firstName, lastName, email,
-              password, passwordSalt, avatarName, updatedAt
+              password, passwordSalt, avatarName, createdAt,
+              updatedAt
             FROM ${this.getTableName()}
             WHERE ${this.getTableName()}.id=? AND ${this.getTableName()}.deletedAt IS NULL
             LIMIT 1`, 
@@ -94,7 +95,8 @@ module.exports = (sequelize, DataTypes) => {
       try {
         const result = await sequelize.query(
           `SELECT id, firstName, lastName, email,
-              password, passwordSalt, avatarName, updatedAt
+              password, passwordSalt, avatarName, createdAt,
+              updatedAt
             FROM ${this.getTableName()}
             WHERE ${this.getTableName()}.id=? AND ${this.getTableName()}.deletedAt IS NULL
             LIMIT 1`, 
@@ -125,12 +127,11 @@ module.exports = (sequelize, DataTypes) => {
       try {
         const result = await sequelize.query(
           `SELECT id, firstName, lastName, email,
-              password, passwordSalt, updatedAt
-            ${this.getTableName()}.updatedAt, username
+              password, passwordSalt, createdAt, updatedAt
             FROM ${this.getTableName()}
             LEFT JOIN ${sequelize.models.userToken.getTableName()} ON ${sequelize.models.userToken.getTableName()}.usersId = ${this.getTableName()}.id
             WHERE ${sequelize.models.userToken.getTableName()}.token=? AND
-              ${sequelize.models.user.getTableName()}.deletedAt IS NULL
+              ${sequelize.models.user.getTableName()}.deletedAt IS NULL AND
               ${sequelize.models.userToken.getTableName()}.deletedAt IS NULL
             LIMIT 1`, 
           {
@@ -163,7 +164,8 @@ module.exports = (sequelize, DataTypes) => {
       try {
         const result = await sequelize.query(
           `SELECT id, firstName, lastName, email,
-              password, passwordSalt, avatarName, updatedAt
+              password, passwordSalt, avatarName, createdAt,
+              updatedAt
             FROM ${this.getTableName()}
             WHERE ${this.getTableName()}.id=? AND ${this.getTableName()}.deletedAt IS NULL
             LIMIT 1`, 
@@ -622,7 +624,7 @@ module.exports = (sequelize, DataTypes) => {
     static async getUserByAuthToken(token, timezone = appTimezone) {
       try {
         const result = await sequelize.query(
-          `SELECT ${sequelize.models.userToken.getTableName()}.*, ${sequelize.models.userToken.getTableName()}.id as ${sequelize.models.userToken.getTableName()}ID, ${this.getTableName()}.*
+          `SELECT ${sequelize.models.userToken.getTableName()}.*, ${sequelize.models.userToken.getTableName()}.id as ${sequelize.models.userToken.getTableName()}Id, ${this.getTableName()}.*
             FROM ${this.getTableName()}
             INNER JOIN ${sequelize.models.userToken.getTableName()}
               ON ${this.getTableName()}.id = ${sequelize.models.userToken.getTableName()}.usersId
