@@ -6,11 +6,7 @@ const {
   appTimezone,
   appURL,
 } = require('../../config');
-const {
-  generateToken,
-  encrypt,
-  compare,
-} = require("../../utils/tokens");
+const { encrypt, compare, } = require("../../utils/tokens");
 const { validEmailRegex, } = require("../../utils/regexes");
 const { mysqlTimeFormat, } = require("../../utils/time");
 
