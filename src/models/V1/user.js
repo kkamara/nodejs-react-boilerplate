@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
      * @param {string} timezone [appTimezone]
      * @return {Object|false}
      */
-    static async getUserByID(id, timezone = appTimezone) {
+    static async getUserById(id, timezone = appTimezone) {
       let res = false;
       try {
         const result = await sequelize.query(
