@@ -10,7 +10,7 @@ module.exports = {
     try {
       await queryInterface.bulkInsert('userTokens', [
         {
-          usersID: 31,
+          usersId: 31,
           token: generateToken(),
           expiresAt: moment().utc().add(1, "days").format(mysqlTimeFormat),
           createdAt: moment()

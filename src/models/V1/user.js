@@ -26,21 +26,21 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * @param {number} userID
+     * @param {number} userId
      * @returns {boolean}
      */
-    static async updateUserTimestamp(userID) {
+    static async updateUserTimestamp(userId) {
       try {
         const result = await sequelize.query(
           `UPDATE ${this.getTableName()}
             SET updatedAt = :updatedAt
-            WHERE id = :userID`,
+            WHERE id = :userId`,
           {
             replacements: {
               updatedAt: moment()
                 .utc()
                 .format(mysqlTimeFormat),
-              userID,
+              userId,
             },
             type: sequelize.QueryTypes.UPDATE,
           },
@@ -132,7 +132,7 @@ module.exports = (sequelize, DataTypes) => {
               password, passwordSalt, updatedAt
             ${this.getTableName()}.updatedAt, username
             FROM ${this.getTableName()}
-            LEFT JOIN ${sequelize.models.userToken.getTableName()} ON ${sequelize.models.userToken.getTableName()}.usersID = ${this.getTableName()}.id
+            LEFT JOIN ${sequelize.models.userToken.getTableName()} ON ${sequelize.models.userToken.getTableName()}.usersId = ${this.getTableName()}.id
             WHERE ${sequelize.models.userToken.getTableName()}.token=? AND
               ${sequelize.models.user.getTableName()}.deletedAt IS NULL
               ${sequelize.models.userToken.getTableName()}.deletedAt IS NULL
@@ -390,19 +390,19 @@ module.exports = (sequelize, DataTypes) => {
 
     /**
      * @param {string} email
-     * @param {number} userID
+     * @param {number} userId
      * @returns {boolean}
      */
-    static async emailExistsNotByID(email, userID) {
+    static async emailExistsNotByID(email, userId) {
       try {
         const results = await sequelize.query(
           `SELECT id
             FROM ${this.getTableName()}
-            WHERE email = :email AND id != :userID
+            WHERE email = :email AND id != :userId
             ORDER BY id DESC
             LIMIT 1`, 
           {
-            replacements: { email, userID, },
+            replacements: { email, userId, },
             type: sequelize.QueryTypes.SELECT,
           },
         );
@@ -450,7 +450,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         );
         
-        return { userID: result[0] };
+        return { userId: result[0] };
       } catch(err) {
         if ("production" !== nodeEnv) {
           console.log(err);
@@ -629,7 +629,7 @@ module.exports = (sequelize, DataTypes) => {
           `SELECT ${sequelize.models.userToken.getTableName()}.*, ${sequelize.models.userToken.getTableName()}.id as ${sequelize.models.userToken.getTableName()}ID, ${this.getTableName()}.*
             FROM ${this.getTableName()}
             INNER JOIN ${sequelize.models.userToken.getTableName()}
-              ON ${this.getTableName()}.id = ${sequelize.models.userToken.getTableName()}.usersID
+              ON ${this.getTableName()}.id = ${sequelize.models.userToken.getTableName()}.usersId
             WHERE ${sequelize.models.userToken.getTableName()}.token = :token AND
               ${sequelize.models.userToken.getTableName()}.deletedAt IS NULL AND
               ${this.getTableName()}.deletedAt IS NULL
@@ -656,20 +656,20 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * @param {number} userID
+     * @param {number} userId
      * @returns {boolean}
      * @throws Error when environment is not set to test
      */
-    static async testDeleteUser(userID) {
+    static async testDeleteUser(userId) {
       if ("test" !== nodeEnv) {
         throw new Error("Environment must be set to test when invoking this method.");
       }
       try {
         await sequelize.query(
           `DELETE FROM ${this.getTableName()}
-            WHERE id = :userID;`,
+            WHERE id = :userId;`,
           {
-            replacements: { userID, },
+            replacements: { userId, },
             type: sequelize.QueryTypes.DELETE,
           },
         );
@@ -684,7 +684,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * @param {Object} userID
+     * @param {Object} userId
      * @returns {boolean}
      * @throws Error when environment is not set to test
      */
@@ -713,7 +713,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         );
         
-        return { userID: result[0] };
+        return { userId: result[0] };
       } catch(err) {
         if ("production" !== nodeEnv) {
           console.log(err);
@@ -723,11 +723,11 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * @param {number} userID
+     * @param {number} userId
      * @param {Object} payload
      * @returns {boolean}
      */
-    static async updateUser(userID, payload) {
+    static async updateUser(userId, payload) {
       try {
         const result = await sequelize.query(
           `UPDATE ${this.getTableName()}
@@ -738,7 +738,7 @@ module.exports = (sequelize, DataTypes) => {
               passwordSalt = COALESCE(:passwordSalt, passwordSalt),
               avatarName = COALESCE(:avatarName, avatarName),
               updatedAt = COALESCE(:updatedAt, updatedAt)
-            WHERE id = :userID`,
+            WHERE id = :userId`,
           {
             replacements: {
               firstName: payload.firstName,
@@ -750,7 +750,7 @@ module.exports = (sequelize, DataTypes) => {
               updatedAt: moment()
                 .utc()
                 .format(mysqlTimeFormat),
-              userID,
+              userId,
             },
             type: sequelize.QueryTypes.UPDATE,
           },
@@ -769,11 +769,11 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * @param {number} userID
+     * @param {number} userId
      * @param {Object} input
      * @returns {false|string}
      */
-    static async getUpdateUserError(userID, input) {
+    static async getUpdateUserError(userId, input) {
       if (undefined === input.firstName) {
         return "The first name field is required.";
       } else if ("string" !== typeof input.firstName) {
@@ -814,7 +814,7 @@ module.exports = (sequelize, DataTypes) => {
         );
         if (
           false !== foundUserByEmail &&
-          foundUserByEmail.id !== userID
+          foundUserByEmail.id !== userId
         ) {
           return "The email field is already taken.";
         }
@@ -861,22 +861,22 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * @param {number} userID
+     * @param {number} userId
      * @returns {boolean}
      */
-    static async resetAvatar(userID) {
+    static async resetAvatar(userId) {
       try {
         const result = await sequelize.query(
           `UPDATE ${this.getTableName()}
             SET avatarName = null,
               updatedAt = :updatedAt
-            WHERE id = :userID`,
+            WHERE id = :userId`,
           {
             replacements: {
               updatedAt: moment()
                 .utc()
                 .format(mysqlTimeFormat),
-              userID,
+              userId,
             },
             type: sequelize.QueryTypes.UPDATE,
           },

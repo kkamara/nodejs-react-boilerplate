@@ -53,7 +53,7 @@ const createUser = asyncHandler(async (req, res) => {
   }
 
   const newUser = await db.sequelize.models.user.getUser(
-    userInsert.userID,
+    userInsert.userId,
     req.session.timezone,
   );
   if (false === newUser) {
@@ -201,7 +201,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   }
   
   await db.sequelize.models.user.updateUserTimestamp(
-    req.session.userID,
+    req.session.userId,
   );
 
   res.status(status.OK);

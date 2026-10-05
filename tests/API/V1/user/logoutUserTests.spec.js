@@ -35,7 +35,7 @@ describe('Logout User API Tests', function() {
     if (false === createdAccount) {
       throw new Error("Error encountered when creating account.");
     }
-    createdAccountID = createdAccount.userID;
+    createdAccountID = createdAccount.userId;
     
     const createdUserToken = await db.sequelize.models
       .userToken

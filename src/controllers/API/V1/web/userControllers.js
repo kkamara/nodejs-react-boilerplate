@@ -57,7 +57,7 @@ const createUser = asyncHandler(async (req, res) => {
   }
 
   const newUser = await db.sequelize.models.user.getUser(
-    userInsert.userID,
+    userInsert.userId,
     req.session.timezone,
   );
   if (false === newUser) {
@@ -205,7 +205,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   }
   
   await db.sequelize.models.user.updateUserTimestamp(
-    req.session.userID,
+    req.session.userId,
   );
 
   res.status(status.OK);
@@ -244,7 +244,7 @@ const uploadAvatar = asyncHandler(async (req, res) => {
   const user = await db.sequelize.models
     .user
     .getUserByIdRaw(
-      req.session.userID,
+      req.session.userId,
     );
   if (false === user) {
     res.status(status.INTERNAL_SERVER_ERROR);
@@ -261,7 +261,7 @@ const uploadAvatar = asyncHandler(async (req, res) => {
   const updateDB = await db.sequelize.models
     .user
     .updateUser(
-      req.session.userID,
+      req.session.userId,
       {
         avatarName: newFileName,
         firstName: null,
@@ -283,7 +283,7 @@ const updateUser = asyncHandler(async (req, res) => {
   const inputError = await db.sequelize.models
     .user
     .getUpdateUserError(
-      req.session.userID,
+      req.session.userId,
       req.body,
     );
   if (false !== inputError) {
@@ -310,7 +310,7 @@ const updateUser = asyncHandler(async (req, res) => {
   const updateUser = await db.sequelize.models
     .user
     .updateUser(
-      req.session.userID,
+      req.session.userId,
       {
         firstName: cleanData.firstName,
         lastName: cleanData.lastName,
@@ -336,7 +336,7 @@ const removeAvatar = asyncHandler(async (req, res) => {
   const user = await db.sequelize.models
     .user
     .getUserByIdRaw(
-      req.session.userID,
+      req.session.userId,
     );
   if (false === user) {
     res.status(status.NOT_FOUND);
@@ -352,7 +352,7 @@ const removeAvatar = asyncHandler(async (req, res) => {
     const resetAvatar = await db.sequelize.models
       .user
       .resetAvatar(
-        req.session.userID,
+        req.session.userId,
       );
     if (false === resetAvatar) {
       res.status(status.INTERNAL_SERVER_ERROR);

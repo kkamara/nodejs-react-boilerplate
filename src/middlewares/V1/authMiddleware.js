@@ -22,7 +22,7 @@ module.exports.authenticate = asyncHandler(async (req, res, next) => {
   }
   const extractedToken = req.headerString("authorization")
     .split(" ")[1];
-  req.session.userID = authTokenResult.userID;
+  req.session.userId = authTokenResult.userId;
   req.session.extractedToken = extractedToken;
   return next();
 });
