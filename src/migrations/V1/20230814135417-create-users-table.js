@@ -40,8 +40,8 @@ module.exports = {
         },
       }, { transaction, });
       await queryInterface.addIndex('users', ['email'], {
-        name: "usersEmail",
-        fields: 'email',
+        name: "email",
+        fields: ['email'],
         unique: true,
         transaction,
       });
@@ -54,7 +54,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     const transaction = await queryInterface.sequelize.transaction();
     try {
-      await queryInterface.removeIndex('users', 'usersEmail', { transaction });
+      await queryInterface.removeIndex('users', 'email', { transaction });
       await queryInterface.dropTable('users', { transaction, });
       await transaction.commit();
     } catch (err) {
