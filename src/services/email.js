@@ -1,5 +1,7 @@
 "use strict";
 const nodemailer = require("nodemailer");
+const path = require("node:path");
+const pug = require("pug");
 const config = require("../config/index");
 
 /**
@@ -7,12 +9,14 @@ const config = require("../config/index");
  * @param {string} obj.subject
  * @param {string} obj.plainText
  * @param {string} obj.html
+ * @param {string} obj.message
  * @returns {boolean}
  */
 exports.testSendEmail = async ({
   subject,
   plainText,
   html,
+  message,
   to,
 }) => {
   const transporter = nodemailer.createTransport({
@@ -25,25 +29,22 @@ exports.testSendEmail = async ({
       from: config.mailFrom,
       to: to || config.mailTo,
       subject: subject || "Hello ✔",
-      text: plainText || `Hello world\n\n${config.appName} 2026.`, // plain‑text body
-      html: html || `
-        <html>
-          <head>
-            <style>
-              h1 {
-                color: red;
-              }
-            </style>
-          </head>
-          <body>
-            <h1>Hello world</h1>
-            <br/>
-            <footer>
-              ${config.appName} &copy; 2026.
-            </footer>
-          </body>
-        </html>
-      `
+      text: plainText || pug.renderFile(
+        path.join(__dirname, "../views/emails/test-email.text"),
+        {
+          message: message || "Hello world",
+          appName: config.appName,
+          footerYear: 2027,
+        },
+      ),
+      html: html || pug.renderFile(
+        path.join(__dirname, "../views/emails/test-email.pug"),
+        {
+          message: message || "Hello world",
+          appName: config.appName,
+          footerYear: 2027,
+        },
+      ),
     });
 
     return true;
