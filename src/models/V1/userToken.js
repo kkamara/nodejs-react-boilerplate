@@ -301,7 +301,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'userToken',
-    tableName: "userTokens",
+    tableName: 'userTokens',
   });
   
   return UserToken;
