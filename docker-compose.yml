@@ -7,6 +7,8 @@ services:
     environment:
       DATABASE_URL: "mysql://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
       PORT: "${PORT:-8000}"
+      MAIL_FROM: "${MAIL_FROM}"
+      MAIL_TO: "${MAIL_TO}"
     volumes:
       - .:/app/
       - /app/node_modules

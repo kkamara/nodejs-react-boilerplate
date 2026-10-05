@@ -19,10 +19,6 @@ exports.testSendEmail = async ({
     host: "mailhog", // Docker app
     port: config.forwardingMailhogPort || 1025,
     secure: false, // true for 465, false for other ports
-    auth: {
-      user: config.mailUser,
-      pass: config.mailPass,
-    },
   });
   try {
     await transporter.sendMail({
