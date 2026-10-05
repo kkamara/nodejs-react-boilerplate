@@ -193,41 +193,6 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * 
-     * @param {number} id User's id.
-     * @return {string|false} String token. 
-     */
-    static async getNewToken(id) {
-      const result = generateToken();
-      try {
-        await sequelize.query(
-          `INSERT INTO ${sequelize.models.userToken.getTableName()}(
-              usersID, token, createdAt, updatedAt
-            ) VALUES(
-              ?, ?, NOW(), NOW()
-            )`, 
-          {
-            replacements: [ id, result.hash, ],
-            type: sequelize.QueryTypes.INSERT,
-          },
-        );
-        
-        const user = await sequelize.models
-          .user
-          .setUpdatedAt(id);
-        if (user === false) {
-          return false;
-        }
-        return result.hash;
-      } catch(err) {
-        if ("production" !== nodeEnv) {
-          console.log(err);
-        }
-        return false;
-      }
-    }
-
-    /**
      * @param {Object} options
      * @param {number} options.page [page=1]
      * @param {number} options.perPage [perPage=7]
