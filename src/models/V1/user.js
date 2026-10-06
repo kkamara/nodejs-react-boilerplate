@@ -127,7 +127,8 @@ module.exports = (sequelize, DataTypes) => {
       try {
         const result = await sequelize.query(
           `SELECT id, firstName, lastName, email,
-              password, passwordSalt, createdAt, updatedAt
+              password, passwordSalt, avatarName, createdAt,
+              updatedAt
             FROM ${this.getTableName()}
             LEFT JOIN ${sequelize.models.userToken.getTableName()} ON ${sequelize.models.userToken.getTableName()}.usersId = ${this.getTableName()}.id
             WHERE ${sequelize.models.userToken.getTableName()}.token=? AND
