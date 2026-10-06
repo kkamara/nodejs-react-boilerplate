@@ -104,7 +104,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         );
         
-        if (undefined === results) {
+        if (0 === results.length) {
           return false;
         }
         
@@ -135,7 +135,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         );
         
-        if (undefined === results) {
+        if (0 === results.length) {
           return false;
         }
         
