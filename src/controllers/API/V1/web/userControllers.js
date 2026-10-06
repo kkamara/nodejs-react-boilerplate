@@ -67,8 +67,7 @@ const createUser = asyncHandler(async (req, res) => {
 
   res.status(status.OK);
   return res.json({
-    user: db.sequelize.models.user
-      .getFormattedUserData(newUser, req.session.timezone),
+    user: newUser,
   });
 });
 
