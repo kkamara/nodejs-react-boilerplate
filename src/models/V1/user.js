@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * @param {string} id
+     * @param {number} id
      * @param {string} timezone [appTimezone]
      * @return {Object|false}
      */
@@ -87,7 +87,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * @param {string} id
+     * @param {number} id
      * @return {Object|false}
      */
     static async getUserByIdRaw(id) {

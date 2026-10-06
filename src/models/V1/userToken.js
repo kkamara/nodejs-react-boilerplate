@@ -118,7 +118,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     /**
-     * @param {string} id
+     * @param {number} id
      * @returns {Object|false}
      */
     static async getAuthToken(id) {
