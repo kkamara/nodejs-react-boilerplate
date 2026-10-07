@@ -34,7 +34,7 @@ services:
       - MYSQL_PASSWORD=${DB_PASS}
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - 'mysql:/docker-entrypoint-initdb.d'
+      - "mysql:/var/lib/mysql"
     networks:
       - app
     healthcheck:
