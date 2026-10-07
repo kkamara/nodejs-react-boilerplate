@@ -740,12 +740,12 @@ module.exports = (sequelize, DataTypes) => {
             WHERE id = :userId`,
           {
             replacements: {
-              firstName: payload.firstName,
-              lastName: payload.lastName,
-              email: payload.email,
-              password: payload.password,
-              passwordSalt: payload.passwordSalt,
-              avatarName: payload.avatarName,
+              firstName: payload.firstName || null,
+              lastName: payload.lastName || null,
+              email: payload.email || null,
+              password: payload.password || null,
+              passwordSalt: payload.passwordSalt || null,
+              avatarName: payload.avatarName || null,
               updatedAt: moment()
                 .utc()
                 .format(mysqlTimeFormat),
