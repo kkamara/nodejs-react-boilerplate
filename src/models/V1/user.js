@@ -270,7 +270,7 @@ module.exports = (sequelize, DataTypes) => {
     static getRegisterError(bodyInput) {
       if (undefined === bodyInput.firstName) {
         return "The first name field is required.";
-      } else if (typeof bodyInput.firstName !== "string") {
+      } else if ("string" !== typeof bodyInput.firstName) {
         return "The first name field must be of type string";
       } else if (0 === bodyInput.firstName.trim().length) {
         return "The first name field is required.";
@@ -282,7 +282,7 @@ module.exports = (sequelize, DataTypes) => {
 
       if (undefined === bodyInput.lastName) {
         return "The last name field is required.";
-      } else if (typeof bodyInput.lastName !== "string") {
+      } else if ("string" !== typeof bodyInput.lastName) {
         return "The last name field must be of type string";
       } else if (0 === bodyInput.lastName.trim().length) {
         return "The last name field is required.";
@@ -294,7 +294,7 @@ module.exports = (sequelize, DataTypes) => {
 
       if (undefined === bodyInput.email) {
         return "The email field is required.";
-      } else if (typeof bodyInput.email !== "string") {
+      } else if ("string" !== typeof bodyInput.email) {
         return "The email field must be of type string";
       } else if (0 === bodyInput.email.trim().length) {
         return "The email field is required.";
@@ -306,7 +306,7 @@ module.exports = (sequelize, DataTypes) => {
 
       if (undefined === bodyInput.password) {
         return "The password field is required.";
-      } else if (typeof bodyInput.password !== "string") {
+      } else if ("string" !== typeof bodyInput.password) {
         return "The password field must be of type string";
       } else if (0 === bodyInput.password.trim().length) {
         return "The password field is required.";
@@ -317,6 +317,8 @@ module.exports = (sequelize, DataTypes) => {
       } else {
         if (undefined === bodyInput.passwordConfirmation) {
           return "The password confirmation field is required.";
+        } else if ("string" !== typeof bodyInput.passwordConfirmation) {
+          return "The password confirmation field must be of type string";
         } else if (0 === bodyInput.passwordConfirmation.trim().length) {
           return "The password confirmation field is required.";
         } else if (bodyInput.password !== bodyInput.passwordConfirmation) {
