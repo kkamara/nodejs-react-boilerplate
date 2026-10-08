@@ -3,7 +3,7 @@ const { status, } = require("http-status");
 const { testSendEmail, } = require("../../services/email");
 const asyncHandler = require("express-async-handler");
 
-const sendEmail = asyncHandler(async (req, res) => {
+const sendEmailRoute = asyncHandler(async (req, res) => {
   const sendEmail = await testSendEmail({
     subject: "Test Email ✔",
     message: "This is a test email.",
@@ -21,4 +21,4 @@ const sendEmail = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { sendEmail, };
+module.exports = { sendEmailRoute };
