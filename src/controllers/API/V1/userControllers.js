@@ -23,7 +23,7 @@ const createUser = asyncHandler(async (req, res) => {
       firstName: req.bodyString("firstName"),
       lastName: req.bodyString("lastName"),
       email: req.bodyEmail("email"),
-      password: req.bodyString("password"),
+      password: req.body.password, // Uncleaned password
     });
   if (false === cleanData) {
     res.status(status.BAD_REQUEST);

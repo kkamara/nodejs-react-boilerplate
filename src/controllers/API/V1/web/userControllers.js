@@ -27,7 +27,7 @@ const createUser = asyncHandler(async (req, res) => {
       firstName: req.bodyString("firstName"),
       lastName: req.bodyString("lastName"),
       email: req.bodyEmail("email"),
-      password: req.bodyString("password"),
+      password: req.body.password, // Uncleaned password
     });
   if (false === cleanData) {
     res.status(status.BAD_REQUEST);
@@ -261,14 +261,7 @@ const uploadAvatar = asyncHandler(async (req, res) => {
     .user
     .updateUser(
       req.session.userId,
-      {
-        avatarName: newFileName,
-        firstName: null,
-        lastName: null,
-        email: null,
-        password: null,
-        passwordSalt: null,
-      },
+      { avatarName: newFileName },
     );
   if (false === updateDB) {
     res.status(status.INTERNAL_SERVER_ERROR);
@@ -296,7 +289,7 @@ const updateUser = asyncHandler(async (req, res) => {
       firstName: req.bodyString("firstName"),
       lastName: req.bodyString("lastName"),
       email: req.bodyString("email"),
-      password: req.bodyString("password"),
+      password: req.body.password, // Uncleaned password
     });
   
   let newPassword, newPasswordSalt;
@@ -320,7 +313,6 @@ const updateUser = asyncHandler(async (req, res) => {
         passwordSalt: newPasswordSalt ?
           newPasswordSalt :
           null,
-        avatarName: null,
       }
     );
   if (false === updateUser) {
