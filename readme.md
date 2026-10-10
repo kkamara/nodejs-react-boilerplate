@@ -134,7 +134,7 @@ docker-compose up --build -d
 
 ![docker-mailhog.png](https://raw.githubusercontent.com/kkamara/useful/main/docker-mailhog.png)
 
-Mail environment credentials are at [.env.docker](https://raw.githubusercontent.com/kkamara/nodejs-react-boilerplate/main/.env.docker).
+Mail environment credentials are at [.env.docker](./.env.docker).
 
 The [Mailhog](https://github.com/mailhog/MailHog) Docker image runs at `http://localhost:8025`in this app.
 
