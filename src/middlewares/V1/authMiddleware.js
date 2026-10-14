@@ -1,6 +1,5 @@
 "use strict";
 const { status, } = require("http-status");
-const moment = require("moment-timezone");
 const { message401, } = require("../../utils/httpResponses");
 const db = require("../../models/V1/index");
 const asyncHandler = require("express-async-handler");
