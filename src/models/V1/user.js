@@ -394,7 +394,7 @@ module.exports = (sequelize, DataTypes) => {
      * @param {number} userId
      * @returns {boolean}
      */
-    static async emailExistsNotByID(email, userId) {
+    static async emailExistsNotById(email, userId) {
       try {
         const results = await sequelize.query(
           `SELECT id
@@ -410,9 +410,9 @@ module.exports = (sequelize, DataTypes) => {
         
         if (0 === results.length) {
           return false;
+        } else {
+          return true;
         }
-        
-        return false;
       } catch(err) {
         if ("production" !== nodeEnv) {
           console.log(err);
