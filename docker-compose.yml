@@ -41,7 +41,7 @@ services:
       test: ["CMD", "mysqladmin", "ping", "-p${DB_PASS}"]
   redis:
     container_name: nrb-redis
-    image: "redis:alpine" 
+    image: "redis:alpine"
     restart: unless-stopped
     ports:
       - '${REDIS_PORT:-6379}:6379'
@@ -54,6 +54,7 @@ services:
   mailhog:
     container_name: nrb-mailhog
     image: 'mailhog/mailhog:latest'
+    restart: unless-stopped
     ports:
       - '${FORWARD_MAILHOG_PORT:-1025}:1025'
       - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
@@ -62,6 +63,7 @@ services:
   selenium:
     container_name: nrb-selenium
     image: 'selenium/standalone-chrome'
+    restart: unless-stopped
     ports:
       - '${SELENIUM_PORT:-4000}:4444'
     volumes:
