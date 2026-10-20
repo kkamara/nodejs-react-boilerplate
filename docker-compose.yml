@@ -15,8 +15,7 @@ services:
     ports:
       - "${PORT:-8000}:${PORT:-8000}"
     restart: unless-stopped
-    depends_on: 
-      - redis 
+    depends_on:
       - mysql
       - mailhog
     networks: 
@@ -39,18 +38,6 @@ services:
       - app
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-p${DB_PASS}"]
-  redis:
-    container_name: nrb-redis
-    image: "redis:alpine"
-    restart: unless-stopped
-    ports:
-      - '${REDIS_PORT:-6379}:6379'
-    volumes:
-      - 'redis:/data'
-    networks:
-      - app
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
   mailhog:
     container_name: nrb-mailhog
     image: 'mailhog/mailhog:latest'
@@ -60,20 +47,8 @@ services:
       - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
     networks:
       - app
-  selenium:
-    container_name: nrb-selenium
-    image: 'selenium/standalone-chrome'
-    restart: unless-stopped
-    ports:
-      - '${SELENIUM_PORT:-4000}:4444'
-    volumes:
-      - '/dev/shm:/dev/shm'
-    networks:
-      - app
 
 volumes:
-  redis:
-    driver: local
   mysql:
     driver: local
 
