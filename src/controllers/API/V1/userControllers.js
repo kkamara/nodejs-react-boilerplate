@@ -132,7 +132,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const authTokenResult = await db.sequelize.models
     .userToken
     .getAuthToken(
-      authTokenInsert.authTokenID,
+      authTokenInsert.authTokenId,
     );
   if (false === authTokenResult) {
     res.status(status.BAD_REQUEST);

@@ -173,7 +173,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         );
         
-        return { authTokenID: result[0] };
+        return { authTokenId: result[0] };
       } catch(err) {
         if ("production" !== nodeEnv) {
           console.log(err);

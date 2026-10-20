@@ -11,11 +11,11 @@ export const RegisterUserService = (data) => {
 
 export const LoginUserService = (credentials) => {
   const http = new HttpService()
-  const tokenID = "user-token"
+  const tokenId = "user-token"
   
   return http.postData("/user", credentials)
     .then(response => {
-      localStorage.setItem(tokenID, response.data.data.authToken)
+      localStorage.setItem(tokenId, response.data.data.authToken)
       return response.data
     })
     .catch(err => { throw err })
@@ -23,9 +23,9 @@ export const LoginUserService = (credentials) => {
 
 export const AuthoriseUserService = () => {
   const http = new HttpService()
-  const tokenID = "user-token"
+  const tokenId = "user-token"
   
-  return http.getData("/user/authorise", tokenID)
+  return http.getData("/user/authorise", tokenId)
     .then(response => {
       return response.data
     })
@@ -34,11 +34,11 @@ export const AuthoriseUserService = () => {
 
 export const LogoutUserService = () => {
   const http = new HttpService()
-  const tokenID = "user-token"
-  return http.delData("/user", tokenID)
+  const tokenId = "user-token"
+  return http.delData("/user", tokenId)
     .then((response) => {
-      if (null !== localStorage.getItem(tokenID)) {
-        localStorage.removeItem(tokenID)
+      if (null !== localStorage.getItem(tokenId)) {
+        localStorage.removeItem(tokenId)
       }
       window.location = "/user/login"
       return response.data
