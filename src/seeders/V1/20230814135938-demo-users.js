@@ -26,7 +26,7 @@ module.exports = {
           updatedAt: moment()
             .utc()
             .format(mysqlTimeFormat),
-        })
+        });
       }
       
       pwd = encrypt("secret");
@@ -42,7 +42,7 @@ module.exports = {
         updatedAt: moment()
           .utc()
           .format(mysqlTimeFormat),
-      })
+      });
 
       await queryInterface.bulkInsert('users', [
         ...fakeUsers,
