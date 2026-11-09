@@ -127,7 +127,7 @@ yarn dev:frontend
 
 ```bash
 cp .env.docker .env
-docker-compose up --build -d
+docker-compose --env-file .env.docker up --build -d
 ```
 
 ## Mail Server With Docker
