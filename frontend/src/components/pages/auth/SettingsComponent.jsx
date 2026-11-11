@@ -3,7 +3,7 @@ import React, {
   useState,
   useRef,
 } from "react"
-import { Helmet, } from "react-helmet"
+import { Helmet, } from "react-helmet-async"
 import { useSelector, useDispatch, } from "react-redux"
 
 import ErrorComponent from "../../layouts/ErrorComponent"
@@ -142,7 +142,7 @@ export default function SettingsComponent() {
   if (state.auth.loading) {
     return <div className="container settings-container text-center">
       <Helmet>
-        <title>User Settings - {import.meta.env.VITE_APP_NAME}</title>
+        <title>{"User Settings - " + import.meta.env.VITE_APP_NAME}</title>
       </Helmet>
       <p>Loading...</p>
     </div>
@@ -151,7 +151,7 @@ export default function SettingsComponent() {
   return (
     <div className="container settings-container">
       <Helmet>
-        <title>User Settings - {import.meta.env.VITE_APP_NAME}</title>
+        <title>{"User Settings - " + import.meta.env.VITE_APP_NAME}</title>
       </Helmet>
       <div className="row">
         <div className="col-md-4 offset-md-4">

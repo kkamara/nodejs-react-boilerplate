@@ -1,7 +1,7 @@
 import React, { useEffect, useState, } from "react"
 import { useNavigate, } from "react-router-dom"
 import { useDispatch, useSelector, } from "react-redux"
-import { Helmet, } from "react-helmet"
+import { Helmet, } from "react-helmet-async"
 import { register, authorise, } from "../../../redux/actions/authActions"
 import ErrorComponent from "../../layouts/ErrorComponent"
 
@@ -83,7 +83,7 @@ export default function RegisterComponent() {
   if (authState.loading) {
     return <div className="container register-container text-center">
       <Helmet>
-        <title>Register - {import.meta.env.VITE_APP_NAME}</title>
+        <title>{"Register - " + import.meta.env.VITE_APP_NAME}</title>
       </Helmet>
       <p>Loading...</p>
     </div>
@@ -91,7 +91,7 @@ export default function RegisterComponent() {
 
   return <div className="container register-container text-start">
     <Helmet>
-      <title>Register - {import.meta.env.VITE_APP_NAME}</title>
+      <title>{"Register - " + import.meta.env.VITE_APP_NAME}</title>
     </Helmet>
     <div className="col-md-4 offset-md-4">
       <h1 className="register-lead fw-bold">Register</h1>
