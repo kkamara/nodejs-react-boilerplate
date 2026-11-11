@@ -13,7 +13,7 @@ const app = `http://localhost:${config.appPort}/api/v1`;
 
 let createdAccountID = null;
 let bearerToken = null;
-let authTokenID = null;
+let authTokenId = null;
 
 const firstName = "Test";
 const lastName = "Account "+generateToken(faker.number.int({ min: 3, max: 6, }));
@@ -43,11 +43,11 @@ describe('Authenticate User API Tests', function() {
     if (false === createdUserToken) {
       throw new Error("Error encountered when creating auth token.");
     }
-    authTokenID = createdUserToken.authTokenID;
+    authTokenId = createdUserToken.authTokenId;
     
     const userToken = await db.sequelize.models
       .userToken
-      .getAuthToken(authTokenID);
+      .getAuthToken(authTokenId);
     if (false === userToken) {
       throw new Error("Error encountered when getting auth token.");
     }
@@ -72,7 +72,7 @@ describe('Authenticate User API Tests', function() {
     await db.sequelize.models
       .userToken
       .testDeleteUserToken(
-        authTokenID,
+        authTokenId,
       );
     await db.sequelize.models
       .user
