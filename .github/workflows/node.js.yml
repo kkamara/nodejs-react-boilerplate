@@ -29,6 +29,8 @@ jobs:
       uses: actions/setup-node@v7
       with:
         node-version: ${{ matrix.node-version }}
+        cache: yarn
+        cache-dependency-path: yarn.lock
     - uses: mskelton/setup-yarn@v3
       with:
         flags: --immutable-cache
