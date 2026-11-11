@@ -18,7 +18,7 @@ jobs:
           MYSQL_USER: 'user'
           MYSQL_PASSWORD: 'secret'
         ports:
-          - 3306/tcp
+          - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     strategy:
       matrix:
@@ -41,8 +41,7 @@ jobs:
         cp .env.example .env
         sed -i "s/development/test/g" .env
         sed -i "s/DB_HOST=mysql/DB_HOST=localhost/g" .env
-        sed -i "s/3306/${{ job.services.mysql.ports['3306'] }}/g" testing_config.json
-        sed -i "s/\"root\"/\"user\"/g" testing_config.json
+        cp config.example.json config.json
     - name: Install dependencies
       run: yarn install --silent
     - name: Run database migrations

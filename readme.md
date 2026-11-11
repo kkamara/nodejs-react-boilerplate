@@ -8,8 +8,6 @@
 
 * [Using Postman?](#postman)
 
-* [Important Note](#important-note)
-
 * [Installation](#installation)
 
 * [Usage](#usage)
@@ -33,27 +31,17 @@
 
 [Postman API Environment for NodeJS React Boilerplate](./nodejs-react-boilerplate.postman_environment.json).
 
-## Important Note
-
-You should remove `config.json` from version-control because all database credentials are stored there.
-
-For database usage in pipelines, I recommend creating a `testing_config.json` and adding database commands to `package.json`, like `migrate:test` and `seed:all:test`.
-
 ## Installation
 
 * [NodeJS](https://nodejs.org/en/).
 
 ```bash
-# Create our environment file.
-# Update values in .env file like port and timezone.
-# Not using Docker?
+# Configure your database credentials in config.json
+# (and .env for Docker)
+cp .config.example.json config.json
 cp .env.example .env
-# Install Yarn globally.
 npm install --global yarn
-# Install our app dependencies.
 yarn
-# Before running the next command:
-# Update your database details in config.json
 yarn migrate
 yarn seed:all
 ```
@@ -67,33 +55,14 @@ yarn
 yarn build
 ```
 
-#### Sequelize tutorial
+#### Sequelize reference
 
-See [package.json](./package.json) for helpful commands related to using the database.
+See the [Sequelize migration documentation](https://sequelize.org/docs/v6/other-topics/migrations/) for interacting with the application's database.
+
+See [package.json](./package.json) for helpful commands related to using the database. For example:
 
 ```bash
-# Docs:
-#   https://sequelize.org/docs/v6/other-topics/migrations/
-# Running a specific database seeder
-NODE_ENV=development npx sequelize-cli db:seed --seed 20230814135938-demo-user.js
-# Creating a model & migration
-NODE_ENV=development npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string
-# Creating a migration
-NODE_ENV=development npx sequelize-cli migration:generate --name migration-skeleton
-# Running migrations
-NODE_ENV=development npx sequelize-cli db:migrate
-# Revert the most recent migration
-NODE_ENV=development npx sequelize-cli db:migrate:undo
-# Revert to a specific migration
-NODE_ENV=development npx sequelize-cli db:migrate:undo:all --to XXXXXXXXXXXXXX-create-posts.js
-# Creating a seed (fake database data) to simulate production environment
-NODE_ENV=development npx sequelize-cli seed:generate --name demo-user
-# Running seeds
-NODE_ENV=development npx sequelize-cli db:seed:all
-# Undo the latest seed
-NODE_ENV=development npx sequelize-cli db:seed:undo
-# Undo all seeds
-NODE_ENV=development npx sequelize-cli db:seed:undo:all
+yarn seed:generate --name create-admin-user
 ```
 
 ## Usage
@@ -124,6 +93,7 @@ yarn dev:frontend
 * [Docker Compose](https://docs.docker.com/compose/install/).
 
 ```bash
+cp .config.example.json config.json
 cp .env.example .env
 docker-compose --build -d
 ```

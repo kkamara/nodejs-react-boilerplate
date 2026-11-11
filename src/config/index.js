@@ -3,12 +3,7 @@ const path = require('node:path');
 const dotenv = require('dotenv');
 
 const parseEnvFile = dotenv.config({
-  path: path.join(
-    __dirname, 
-    '../', 
-    '../',
-    '.env',
-  ),
+  path: path.join(__dirname, '../', '../', '.env')
 });
 
 if (parseEnvFile.error) {
