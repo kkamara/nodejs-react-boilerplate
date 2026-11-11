@@ -23,6 +23,8 @@ exports.testSendEmail = async ({
     host: "mailhog", // Docker app
     port: config.forwardingMailhogPort || 1025,
     secure: process.env.MAIL_SECURE === 'true', // true for 465, false for other ports
+    connectionTimeout: 5000,
+    greetingTimeout: 5000,
   });
   try {
     await transporter.sendMail({
