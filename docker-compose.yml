@@ -23,6 +23,7 @@ services:
   mysql:
     container_name: nrb-db
     image: 'mysql:8.0'
+    command: ["--port=${DB_PORT:-3306}"]
     restart: unless-stopped
     ports:
       - '${DB_PORT:-3306}:${DB_PORT:-3306}'
