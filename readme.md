@@ -37,7 +37,7 @@
 
 ```bash
 # Configure your database credentials in config.json
-# (and .env for Docker)
+# (and also .env for Docker)
 cp .config.example.json config.json
 cp .env.example .env
 npm install --global yarn
