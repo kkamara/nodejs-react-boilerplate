@@ -46,13 +46,13 @@ yarn migrate
 yarn seed:all
 ```
 
-#### Frontend Installation
+#### Running frontend
 
 ```bash
 cd frontend
 cp .env.example .env
 yarn
-yarn build
+yarn dev
 ```
 
 #### Sequelize reference
