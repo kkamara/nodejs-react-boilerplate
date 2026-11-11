@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 
 const app = `http://localhost:${config.appPort}/api/v1`;
 
-let createdAccountID = null;
+let createdAccountId = null;
 
 const firstName = "Test";
 const lastName = "Account "+generateToken(faker.number.int({ min: 3, max: 6, }));
@@ -33,7 +33,7 @@ describe('Login User API Tests', function() {
     if (false === createdAccount) {
       throw new Error("Error encountered when creating account.");
     }
-    createdAccountID = createdAccount.userId;
+    createdAccountId = createdAccount.userId;
   });
   it('Tests Login User Success', function(done) {
     chai.request(app)
@@ -52,16 +52,16 @@ describe('Login User API Tests', function() {
         chai.expect(res.body).to.have.property('data');
         chai.expect(res.body.data).to.have.property('user');
         chai.expect(res.body.data.user).to.have.property('id');
-        chai.expect(res.body.data.user.id).to.equal(createdAccountID);
+        chai.expect(res.body.data.user.id).to.equal(createdAccountId);
         done();
       });
   });
   after(async function() {
     await db.sequelize.models
       .userToken
-      .testDeleteAllUsersAuthTokens(createdAccountID);
+      .testDeleteAllUsersAuthTokens(createdAccountId);
     await db.sequelize.models
       .user
-      .testDeleteUser(createdAccountID);
+      .testDeleteUser(createdAccountId);
   });
 });

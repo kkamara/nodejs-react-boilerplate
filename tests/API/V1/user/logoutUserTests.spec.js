@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 
 const app = `http://localhost:${config.appPort}/api/v1`;
 
-let createdAccountID = null;
+let createdAccountId = null;
 let bearerToken = null;
 let authTokenId = null;
 
@@ -35,11 +35,11 @@ describe('Logout User API Tests', function() {
     if (false === createdAccount) {
       throw new Error("Error encountered when creating account.");
     }
-    createdAccountID = createdAccount.userId;
+    createdAccountId = createdAccount.userId;
     
     const createdUserToken = await db.sequelize.models
       .userToken
-      .createAuthToken(createdAccountID);
+      .createAuthToken(createdAccountId);
     if (false === createdUserToken) {
       throw new Error("Error encountered when creating auth token.");
     }
@@ -85,6 +85,6 @@ describe('Logout User API Tests', function() {
       );
     await db.sequelize.models
       .user
-      .testDeleteUser(createdAccountID);
+      .testDeleteUser(createdAccountId);
   });
 });
