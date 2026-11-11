@@ -22,7 +22,7 @@ exports.testSendEmail = async ({
   const transporter = nodemailer.createTransport({
     host: "mailhog", // Docker app
     port: config.forwardingMailhogPort || 1025,
-    secure: false, // true for 465, false for other ports
+    secure: process.env.MAIL_SECURE === 'true', // true for 465, false for other ports
   });
   try {
     await transporter.sendMail({

@@ -48,8 +48,6 @@ For database usage in pipelines, I recommend creating a `testing_config.json` an
 # Update values in .env file like port and timezone.
 # Not using Docker?
 cp .env.example .env
-# Using Docker?
-cp .env.docker .env
 # Install Yarn globally.
 npm install --global yarn
 # Install our app dependencies.
@@ -126,15 +124,13 @@ yarn dev:frontend
 * [Docker Compose](https://docs.docker.com/compose/install/).
 
 ```bash
-cp .env.docker .env
-docker-compose --env-file .env.docker up --build -d
+cp .env.example .env
+docker-compose --build -d
 ```
 
 ## Mail Server With Docker
 
 ![docker-mailhog.png](https://raw.githubusercontent.com/kkamara/useful/main/docker-mailhog.png)
-
-Mail environment credentials are at [.env.docker](./.env.docker).
 
 The [Mailhog](https://github.com/mailhog/MailHog) Docker image runs at `http://localhost:8025`in this app.
 
