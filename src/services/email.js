@@ -19,13 +19,21 @@ exports.testSendEmail = async ({
   message,
   to,
 }) => {
-  const transporter = nodemailer.createTransport({
-    host: "mailhog", // Docker app
-    port: config.forwardingMailhogPort || 1025,
-    secure: process.env.MAIL_SECURE === 'true', // true for 465, false for other ports
+  const host = config.mailHost || (config.nodeEnv === "development" ? "mailhog" : config.mailHost);
+  const options = {
+    host,
+    port: Number(config.mailPort || (host === 'mailhog' ? 1025 : 587)),
+    secure: config.mailSecure === true,
     connectionTimeout: 5000,
     greetingTimeout: 5000,
-  });
+  };
+  if (config.mailUser) {
+    options.auth = {
+      user: config.mailUser,
+      pass: config.mailPass || '',
+    };
+  }
+  const transporter = nodemailer.createTransport(options);
   try {
     await transporter.sendMail({
       from: config.mailFrom,

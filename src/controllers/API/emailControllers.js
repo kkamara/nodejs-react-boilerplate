@@ -6,7 +6,7 @@ const asyncHandler = require("express-async-handler");
 const sendEmailRoute = asyncHandler(async (req, res) => {
   const sendEmail = await testSendEmail({
     subject: "Test Email ✔",
-    message: "This is a test email.",
+    message: "This is a test email sent during development.",
   });
   if (false === sendEmail) {
     res.status(status.INTERNAL_SERVER_ERROR);
