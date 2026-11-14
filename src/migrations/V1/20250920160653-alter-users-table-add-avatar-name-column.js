@@ -15,9 +15,9 @@ module.exports = {
         },
         { transaction },
       );
-      transaction.commit();
+      await transaction.commit();
     } catch (err) {
-      transaction.rollback();
+      await transaction.rollback();
       throw err;
     }
   },
