@@ -7,13 +7,7 @@ const config = require('../../config');
 module.exports.session = session({
   store: "production" === config.nodeEnv ? 
     new (FileStore(session))({
-      path: path.join(
-        __dirname,
-        "..",
-        "..",
-        "..",
-        "sessions",
-      ),
+      path: path.join(__dirname, "../../..", "sessions"),
     }) : undefined,
   secret: config.appKey || 'fallback-secret-key',
   resave: false,

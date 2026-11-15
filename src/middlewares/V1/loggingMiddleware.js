@@ -7,7 +7,7 @@ const path = require("node:path");
 
 const logFileName = "boilerplate.log";
 const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, "..", "..", "..",  "logs", logFileName), 
+  path.join(__dirname, "../../..", "logs", logFileName), 
   { flags: "a" },
 );
 morgan.token("date", (req, res, tz) => {
