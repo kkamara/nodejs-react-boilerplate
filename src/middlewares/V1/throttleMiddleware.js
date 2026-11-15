@@ -8,4 +8,8 @@ module.exports.limiter = rateLimit({
   standardHeaders: 'draft-8',
   legacyHeaders: false,
   ipv6Subnet: 56,
+  skip: (req) => {
+    // Skip rate limiting for static files
+    return req.path.startsWith('/assets') || req.path.startsWith('/public');
+  },
 });
