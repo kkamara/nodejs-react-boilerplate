@@ -10,6 +10,7 @@ const config = require("../config/index");
  * @param {string} obj.plainText
  * @param {string} obj.html
  * @param {string} obj.message
+ * @param {string} obj.to
  * @returns {boolean}
  */
 exports.testSendEmail = async ({
