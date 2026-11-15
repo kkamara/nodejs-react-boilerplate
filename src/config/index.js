@@ -12,8 +12,8 @@ if (parseEnvFile.error) {
 
 const config = {
   asset: path => {
-      if (path[0] === "/") return `${path}`;
-      return `/${path}`;
+    if (path[0] === "/") return `${path}`;
+    return `/${path}`;
   },
   appName: process.env.APP_NAME,
   appKey: process.env.APP_KEY,
