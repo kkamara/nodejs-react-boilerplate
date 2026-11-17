@@ -33,7 +33,7 @@
 
 ## Installation
 
-* [NodeJS](https://nodejs.org/en/).
+* [NodeJS](https://nodejs.org/en/)
 
 ```bash
 # Configure your database credentials in config.json
