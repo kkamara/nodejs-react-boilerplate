@@ -68,7 +68,7 @@ yarn seed:generate --name create-admin-user
 ## Usage
 
 ```bash
-yarn start # Runs Start-script `yarn node src/app.js`
+yarn start
 # Serves app to http://localhost:8000
 ```
 
