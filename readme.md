@@ -38,7 +38,7 @@
 ```bash
 # Configure your database credentials in config.json
 # (and also .env for Docker)
-cp .config.example.json config.json
+cp config.example.json config.json
 cp .env.example .env
 npm install --global yarn
 yarn
@@ -91,7 +91,7 @@ yarn dev:frontend
 * [Docker Compose](https://docs.docker.com/compose/install/).
 
 ```bash
-cp .config.example.json config.json
+cp config.example.json config.json
 cp .env.example .env
 docker-compose --build -d
 ```
