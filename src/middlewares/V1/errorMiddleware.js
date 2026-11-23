@@ -10,9 +10,15 @@ module.exports.notFound = asyncHandler((req, res, next) => {
 });
 
 module.exports.jsonError = (err, req, res, next) => {
-  if (nodeEnv !== "production") {
-    console.log(err);
-  }
+  console.error('Request failed:', {
+    name: err.name,
+    message: err.message,
+    code: err.code,
+    statusCode: statusCode,
+    method: req.method,
+    path: req.path,
+    stack: err.stack,
+  });
   return res.status(res.statusCode || status.INTERNAL_SERVER_ERROR)
     .send({
       message: err.message,
