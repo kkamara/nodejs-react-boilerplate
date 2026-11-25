@@ -14,14 +14,20 @@ module.exports.jsonError = (err, req, res, next) => {
     name: err.name,
     message: err.message,
     code: err.code,
-    statusCode: statusCode,
+    statusCode: res.statusCode,
     method: req.method,
     path: req.path,
     stack: err.stack,
   });
-  return res.status(res.statusCode || status.INTERNAL_SERVER_ERROR)
+  // Handlers set the status before throwing; anything else is an unexpected failure (or a body-parser error).
+  const handled = 400 <= res.statusCode;
+  const statusCode = handled ?
+    res.statusCode :
+    (400 <= err.status && 600 > err.status ? err.status : status.INTERNAL_SERVER_ERROR);
+  const exposeMessage = handled || 500 > statusCode || "production" !== nodeEnv;
+  return res.status(statusCode)
     .send({
-      message: err.message,
+      message: exposeMessage ? err.message : message500,
       stack: "production" === nodeEnv ? null : err.stack,
     });
 };
